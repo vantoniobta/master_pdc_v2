@@ -1013,20 +1013,71 @@
                   <tbody>
                      <tbody>
                     <tr>
-                      <td class="text-left"><a href="" id="thumb-image" data-toggle="image" class="img-thumbnail">
-                        
-                      </td>
-                    </tr>
-                  </tbody>
-                  <td class="text-left">
-                     <div class="col-md-8">
+                      <td class="text-left">
+                        <!-- init canvas custum -->
+                         <div class="container" id="one_div">
+                           <div class="row"> 
+                               <div class="col-md-4" style="background-color:#D3D3D3">
+                          <hr>
+                          <div class="tabs">
+                        <div class="tab-content-wrapper">
+                          <div id="tab-content-1" class="tab-content">
+                             <div class="form-group">
+                            <!--    <button type="button" class="btn btn-info"><i class="fas fa-edit"></i>&nbsp;Text </button> -->
+                              </div>
+                          
+                                    <div class="form-group">
+                                     <!--  <p>typography</p>
+                                          <select id="font-family" class="form-control">
+                                            <option value="arial">Arial</option>
+                                            <option value="Black Han Sans">Black Han Sans</option>
+                                            <option value="Permanent Marker">Permanent Marker</option>
+                                            <option value="Jua">Engagement</option>
+                                          </select> -->
+                                    </div>
+                                   <div class="form-group">
+                                  </div>
+
+                                   <div class="form-group">
+                                    
+                                   </div>
+                          </div>
+
+                          <div id="tab-content-2" class="tab-content">
+                             
+                          </div>
+                          <div id="tab-content-3" class="tab-content">
+                             
+                                    <div id="drawing-mode-options">
+                                     
+                                    </div>
+                          </div>
+
+                          <div id="tab-content-4" class="tab-content">
+                             
+                          </div>
+
+                        </div>
+                       <div >
+                         <p>Tools</p>
+                         <button type="button" id="figuras" class="btn btn-light"><i class="fas fa-cube"></i> figures</button>
+                         <button type="button" class="btn btn-light" ><i class="fas fa-clone"></i> Clone</button>
+                         <button type="button" id="delete" class="btn btn-danger delete_object"><i class="fas fa-trash-alt"></i> Delete</button>
+                         <hr>
+                       </div>
+                      </div>
+                          </div>
+                          <div class="col-md-8">
                             <canvas id="canvas_vantonio" width="460" height="550">
                             Your browser does not support the Canvas tag.
                             </canvas>
                           </div>
-
-                          
-                  </td>
+                           </div>
+                         </div>
+                        <!-- find canvas custum -->
+                      </td>
+                    </tr>
+                  </tbody>
                 <!--   {% set image_row = 0 %}
                   {% for product_image in product_images %}
                   <tr id="image-row{{ image_row }}">
@@ -1040,6 +1091,7 @@
                     </tbody>
 
                   <tfoot>
+            
                  <!--    <tr>
                       <td colspan="2"></td>
                       <td class="text-left"><button type="button" onclick="addImage();" data-toggle="tooltip" title="{{ button_image_add }}" class="btn btn-primary"><i class="fa fa-plus-circle"></i></button></td>
@@ -1172,7 +1224,18 @@
   <script type="text/javascript" src="view/javascript/summernote/summernote.js"></script>
   <link href="view/javascript/summernote/summernote.css" rel="stylesheet" />
   <script type="text/javascript" src="view/javascript/summernote/summernote-image-attributes.js"></script> 
-  <script type="text/javascript" src="view/javascript/summernote/opencart.js"></script> 
+  <script type="text/javascript" src="view/javascript/summernote/opencart.js"></script>
+  <script type="text/javascript">
+    var canvas = new fabric.Canvas('canvas_vantonio');
+        var rect = new fabric.Rect({
+            top : 100,
+            left : 100,
+            width : 60,
+            height : 70,
+            fill : 'red'
+        });
+        canvas.add(rect);
+  </script>
   <script type="text/javascript"><!--
 // Manufacturer
 $('input[name=\'manufacturer\']').autocomplete({

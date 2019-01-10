@@ -805,6 +805,89 @@ input[type="checkbox"]:checked::after, .checkbox input[type="checkbox"]:checked:
 
 
 
+/*init canvas custum =========== */
+
+.tabs {
+}
+.tabs label {
+  transition: background 0.4s ease-in-out, height 0.2s linear;
+  display: inline-block;
+  cursor: pointer;
+  color: #2EBEB9;
+  width: 20%;
+  height: 3em;
+  border-top-left-radius: 3px;
+  border-top-right-radius: 3px;
+  background: #FCFCFC;
+  text-align: center;
+  line-height: 3em; 
+}
+.tabs label:last-of-type {
+  border-bottom: none; 
+}
+.tabs label:hover {
+  background: #259692;
+  color:#ffffff;
+}
+
+@media screen and (max-width: 1600px) {
+.tabs label {
+  width: 15%; } 
+}
+@media screen and (max-width: 900px) {
+.tabs label {
+  width: 20%; 
+  } 
+}
+@media screen and (max-width: 600px) {
+.tabs label {
+  width: 100%;
+  display: block;
+  border-bottom: 2px solid #C7C6C4;
+  border-radius: 0; 
+} 
+}
+@media screen and (max-width: 600px) {
+.tabs {
+  margin: 0; 
+} 
+}
+
+
+
+
+#canvas_vantonio{
+	border:1px solid #06b7f0;
+}
+.btn-file {
+  position: relative;
+  overflow: hidden;
+  background-color:#F00B42;
+  color: #fff;
+  }
+.btn-file input[type=file] {
+    position: absolute;
+    top: 0;
+    right: 0;
+    min-width: 100%;
+    min-height: 100%;
+    font-size: 100px;
+    text-align: right;
+    filter: alpha(opacity=0);
+    opacity: 0;
+    outline: none;
+    cursor: inherit;
+    display: block;
+}
+
+
+/*imagen add canvas url*/
+#img_url{
+   border: 1px solid #ddd;
+    border-radius: 4px;
+    padding: 5px;
+}
+/*find canvas custum =========== */
 
 
 
