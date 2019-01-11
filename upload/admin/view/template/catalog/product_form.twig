@@ -1017,58 +1017,61 @@
                         <!-- init canvas custum -->
                          <div class="container" id="one_div">
                            <div class="row"> 
-                               <div class="col-md-4" style="background-color:#D3D3D3">
+                               <div class="col-md-4" style="background-color:#C0FFEE">
                           <hr>
                           <div class="tabs">
                         <div class="tab-content-wrapper">
-                          <div id="tab-content-1" class="tab-content">
+
                              <div class="form-group">
-                            <!--    <button type="button" class="btn btn-info"><i class="fas fa-edit"></i>&nbsp;Text </button> -->
+                                     <span class="btn btn-default btn-file">
+                                        <i class="fas fa-cloud-upload-alt"></i>Imagen Background<input type="file" id="imagenS" name="imagenS"/>
+                                     </span>
+                                  </div>
+
+                             <div class="form-group">
+                              <button type="button" class="btn btn-info" onclick="Addtext()"><i class="fas fa-edit"></i>&nbsp;Text </button>
                               </div>
                           
                                     <div class="form-group">
-                                     <!--  <p>typography</p>
-                                          <select id="font-family" class="form-control">
-                                            <option value="arial">Arial</option>
-                                            <option value="Black Han Sans">Black Han Sans</option>
-                                            <option value="Permanent Marker">Permanent Marker</option>
-                                            <option value="Jua">Engagement</option>
-                                          </select> -->
+                                      <p>background</p>
+                                        <select id="color" class="form-control">
+                                            <option value="#CD5C5C">#CD5C5C</option>
+                                            <option value="#708090">#708090</option>
+                                            <option value="#98FB98">#98FB98</option>
+                                            <option value="#FFC0CB">#FFC0CB</option>
+                                            <option value="#FF7F50">#FF7F50</option>
+                                        </select>
                                     </div>
-                                   <div class="form-group">
-                                  </div>
+                                  
 
                                    <div class="form-group">
-                                    
+                                    <p>typography</p>
+                                    <select id="font-family" class="form-control">
+                                      <option value="arial">Arial</option>
+                                      <option value="Black Han Sans">Black Han Sans</option>
+                                    </select>
                                    </div>
-                          </div>
 
-                          <div id="tab-content-2" class="tab-content">
-                             
-                          </div>
-                          <div id="tab-content-3" class="tab-content">
-                             
-                                    <div id="drawing-mode-options">
-                                     
-                                    </div>
-                          </div>
+                                    <div class="form-group">
+                   Color text
+                   <input type="color" value="" id="text-color" size="10">
+              </div>
+                  
 
-                          <div id="tab-content-4" class="tab-content">
-                             
-                          </div>
+
 
                         </div>
                        <div >
                          <p>Tools</p>
                          <button type="button" id="figuras" class="btn btn-light"><i class="fas fa-cube"></i> figures</button>
-                         <button type="button" class="btn btn-light" ><i class="fas fa-clone"></i> Clone</button>
+                         <button type="button" class="btn btn-light" ><i class="fas fa-clone" onclick="duplicateObj();"></i> Clone</button>
                          <button type="button" id="delete" class="btn btn-danger delete_object"><i class="fas fa-trash-alt"></i> Delete</button>
                          <hr>
                        </div>
                       </div>
                           </div>
                           <div class="col-md-8">
-                            <canvas id="canvas_vantonio" width="460" height="550">
+                            <canvas id="canvas_vantonio" width="490" height="600">
                             Your browser does not support the Canvas tag.
                             </canvas>
                           </div>
@@ -1227,14 +1230,101 @@
   <script type="text/javascript" src="view/javascript/summernote/opencart.js"></script>
   <script type="text/javascript">
     var canvas = new fabric.Canvas('canvas_vantonio');
-        var rect = new fabric.Rect({
-            top : 100,
-            left : 100,
-            width : 60,
-            height : 70,
-            fill : 'red'
-        });
-        canvas.add(rect);
+        function Addtext() { 
+        canvas.add(new fabric.IText('designer', { 
+        left: 150,
+        top: 130,
+        fontFamily: 'Arial black',
+        fill: '#333',
+        fontSize: 30
+        }));
+    }
+
+      var imageLoader = document.getElementById('imagenS');
+          imageLoader.addEventListener('change', handleImage, false);
+
+      function handleImage(e){
+        var reader = new FileReader();
+          reader.onload = function(event){
+            var img = new Image();
+            img.onload = function(){
+                var imgInstance = new fabric.Image(img,{
+                  left: 0,
+                  top: 0,
+                  scaleX: 1,
+                  scaleY: 1,
+                  selectable:false
+                })
+                canvas.add(imgInstance);
+            }
+             img.src = event.target.result;
+        }
+        reader.readAsDataURL(e.target.files[0]);  
+    }
+
+      canvas.backgroundColor = '#FFFFFF';
+      canvas.renderAll();
+      $('select#color').on('change', function() {
+         canvas.backgroundColor = this.value;
+         canvas.renderAll();
+      });
+
+       document.getElementById('font-family').onchange = function() {
+        canvas.getActiveObject().setFontFamily(this.value);
+        canvas.renderAll();
+    }
+
+        document.getElementById('text-color').onchange = function() {
+         canvas.getActiveObject().setFill(this.value);
+        canvas.renderAll();
+    }
+
+
+       document.getElementById('figuras').onclick=function(){
+            canvas.remove(canvas.getActiveObject());
+            // agregar rectangulo
+                canvas.add(new fabric.Rect({
+                   width: 50, 
+                   height: 100, 
+                   left: 130, 
+                   top: 140, 
+                   fill: 'rgb(186,218,85)'
+                }));
+                // agregar circulo
+                canvas.add(new fabric.Circle({
+                    radius: 40,
+                    left: 180,
+                    top: 150,
+                    fill: 'rgb(240,11,66)'
+                }));
+    };
+
+     $('.delete_object').click(function() {
+      var activeObject = canvas.getActiveObjects();
+      if (confirm('Are you sure?')) {
+        canvas.discardActiveObject();
+        canvas.remove(...activeObject);
+      }
+    });
+
+     function duplicateObj(){
+        var copyData = canvas.getActiveObject().toObject();
+            fabric.util.enlivenObjects([copyData], function(objects) {
+              objects.forEach(function(o) {
+                o.set('top', o.top + 15);
+                o.set('left', o.left + 15);
+                canvas.add(o);
+              });
+              canvas.renderAll();
+            })
+    }
+
+
+
+ 
+
+
+
   </script>
   <script type="text/javascript"><!--
 // Manufacturer
