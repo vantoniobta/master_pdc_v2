@@ -1011,7 +1011,7 @@
                     </tr>
                   </thead>
                   <tbody>
-                     <tbody>
+                    <tbody>
                     <tr>
                       <td class="text-left">
                         <!-- init canvas custum -->
@@ -1024,13 +1024,15 @@
 
                              <div class="form-group">
                                      <span class="btn btn-default btn-file">
-                                        <i class="fas fa-cloud-upload-alt"></i>Imagen Background<input type="file" id="imagenS" name="imagenS"/>
+                                        <i class="fas fa-cloud-upload-alt"></i> Imagen Background<input type="file" id="imagenS" name="imagenS"/>
                                      </span>
+                                      <button type="button" class="btn btn-info" onclick="Addtext()"><i class="fas fa-edit"></i>&nbsp;Text </button>
+                                        <button type="button" class="btn btn-success" id="agrupar"><i class="fas fa-hdd"></i>&nbsp;Save </button>
                                   </div>
 
-                             <div class="form-group">
+                            <!--  <div class="form-group">
                               <button type="button" class="btn btn-info" onclick="Addtext()"><i class="fas fa-edit"></i>&nbsp;Text </button>
-                              </div>
+                              </div> -->
                           
                                     <div class="form-group">
                                       <p>background</p>
@@ -1042,6 +1044,8 @@
                                             <option value="#FF7F50">#FF7F50</option>
                                         </select>
                                     </div>
+
+
                                   
 
                                    <div class="form-group">
@@ -1053,21 +1057,31 @@
                                    </div>
 
                                     <div class="form-group">
-                   Color text
-                   <input type="color" value="" id="text-color" size="10">
-              </div>
-                  
+                                       Color text
+                                       <input type="color" value="" id="text-color" size="10">
+                                  </div>
 
-
-
+                                   <div class="form-group">
+                                      <img src="https://agencias-multimedios.s3.amazonaws.com/2018/vantonio/img/img_url/1.png" width="20%" height="20%" class="img_url" id="img_url">
+                                      <img src="https://agencias-multimedios.s3.amazonaws.com/2018/vantonio/img/img_url/2.png" width="20%" height="20%" class="img_url" id="img_url_2">
+                                      <img src="https://agencias-multimedios.s3.amazonaws.com/2018/vantonio/img/img_url/3.png" width="20%" height="20%" class="img_url" id="img_url_3">
+                                      <img src="https://agencias-multimedios.s3.amazonaws.com/2018/vantonio/img/img_url/4.jpg" width="20%" height="20%" class="img_url" id="img_url_4">
+                                      <img src="https://agencias-multimedios.s3.amazonaws.com/2018/vantonio/img/img_url/5.png" width="20%" height="20%" class="img_url" id="img_url_5">
+                                      <img src="https://agencias-multimedios.s3.amazonaws.com/2018/vantonio/img/img_url/6.png" width="20%" height="20%" class="img_url" id="img_url_6">
+                                      <img src="https://agencias-multimedios.s3.amazonaws.com/2018/vantonio/img/img_url/7.png" width="20%" height="20%" class="img_url" id="img_url_7">
+                                      <img src="https://agencias-multimedios.s3.amazonaws.com/2018/vantonio/img/img_url/8.png" width="20%" height="20%" class="img_url" id="img_url_8">
+                                   </div>
                         </div>
                        <div >
                          <p>Tools</p>
                          <button type="button" id="figuras" class="btn btn-light"><i class="fas fa-cube"></i> figures</button>
-                         <button type="button" class="btn btn-light" ><i class="fas fa-clone" onclick="duplicateObj();"></i> Clone</button>
+                         <button type="button" class="btn btn-light" ><i class="fas fa-clone"></i> Clone</button>
                          <button type="button" id="delete" class="btn btn-danger delete_object"><i class="fas fa-trash-alt"></i> Delete</button>
                          <hr>
                        </div>
+                         <form id="cliente" action="#" method="post">
+                          <textarea name="config_json_canvas" id="from-json-textarea" style="width: 100%; background-color: #C0FFEE"></textarea>
+                         </form>
                       </div>
                           </div>
                           <div class="col-md-8">
@@ -1232,13 +1246,17 @@
     var canvas = new fabric.Canvas('canvas_vantonio');
         function Addtext() { 
         canvas.add(new fabric.IText('designer', { 
-        left: 150,
-        top: 130,
-        fontFamily: 'Arial black',
-        fill: '#333',
-        fontSize: 30
-        }));
-    }
+              left: 150,
+              top: 130,
+              fontFamily: 'Arial black',
+              fill: '#333',
+              fontSize: 30
+              }));
+        }
+
+        function SaveCanvas() {
+          alert('onclick');
+        }
 
       var imageLoader = document.getElementById('imagenS');
           imageLoader.addEventListener('change', handleImage, false);
@@ -1307,17 +1325,100 @@
       }
     });
 
-     function duplicateObj(){
-        var copyData = canvas.getActiveObject().toObject();
-            fabric.util.enlivenObjects([copyData], function(objects) {
-              objects.forEach(function(o) {
-                o.set('top', o.top + 15);
-                o.set('left', o.left + 15);
-                canvas.add(o);
-              });
-              canvas.renderAll();
-            })
-    }
+    document.getElementById('img_url').onclick=function(){
+        fabric.Image.fromURL('https://agencias-multimedios.s3.amazonaws.com/2018/vantonio/img/img_url/1.png',function(oImg){
+            oImg.scale(0.2).setFlipX(true);//tmñ
+            oImg.left=130;//posicion de imagen
+            oImg.top=140;
+            canvas.add(oImg);
+        })
+    };
+    document.getElementById('img_url_2').onclick=function(){
+        fabric.Image.fromURL('https://agencias-multimedios.s3.amazonaws.com/2018/vantonio/img/img_url/2.png',function(oImg){
+            oImg.scale(0.2).setFlipX(true);//tmñ
+            oImg.left=130;//posicion de imagen
+            oImg.top=140;
+            canvas.add(oImg);
+        })
+    };
+
+    document.getElementById('img_url_3').onclick=function(){
+        fabric.Image.fromURL('https://agencias-multimedios.s3.amazonaws.com/2018/vantonio/img/img_url/3.png',function(oImg){
+            oImg.scale(0.1).setFlipX(true);//tmñ
+            oImg.left=130;//posicion de imagen
+            oImg.top=140;
+            canvas.add(oImg);
+        })
+    };
+      document.getElementById('img_url_4').onclick=function(){
+        fabric.Image.fromURL('https://agencias-multimedios.s3.amazonaws.com/2018/vantonio/img/img_url/4.jpg',function(oImg){
+            oImg.scale(0.2).setFlipX(true);//tmñ
+            oImg.left=130;//posicion de imagen
+            oImg.top=140;
+            canvas.add(oImg);
+        })
+    };
+      document.getElementById('img_url_5').onclick=function(){
+        fabric.Image.fromURL('https://agencias-multimedios.s3.amazonaws.com/2018/vantonio/img/img_url/5.png',function(oImg){
+            oImg.scale(0.2).setFlipX(true);//tmñ
+            oImg.left=130;//posicion de imagen
+            oImg.top=140;
+            canvas.add(oImg);
+        })
+    };
+      document.getElementById('img_url_6').onclick=function(){
+        fabric.Image.fromURL('https://agencias-multimedios.s3.amazonaws.com/2018/vantonio/img/img_url/6.png',function(oImg){
+            oImg.scale(0.2).setFlipX(true);//tmñ
+            oImg.left=130;//posicion de imagen
+            oImg.top=140;
+            canvas.add(oImg);
+        })
+    };
+
+  document.getElementById('img_url_7').onclick=function(){
+        fabric.Image.fromURL('https://agencias-multimedios.s3.amazonaws.com/2018/vantonio/img/img_url/7.png',function(oImg){
+            oImg.scale(0.2).setFlipX(true);//tmñ
+            oImg.left=130;//posicion de imagen
+            oImg.top=140;
+            canvas.add(oImg);
+        })
+    };
+    document.getElementById('img_url_8').onclick=function(){
+        fabric.Image.fromURL('https://agencias-multimedios.s3.amazonaws.com/2018/vantonio/img/img_url/8.png',function(oImg){
+            oImg.scale(0.1).setFlipX(true);//tmñ
+            oImg.left=130;//posicion de imagen
+            oImg.top=140;
+            canvas.add(oImg);
+        })
+    };
+
+    document.getElementById('agrupar').addEventListener('click', function() { 
+        var textarea       = document.getElementById("from-json-textarea");
+            textarea.value = JSON.stringify(canvas);
+            // textarea.value = JSON.stringify(
+            //   canvas.getObjects()[0].scaleY  
+            //   );
+            var form = document.querySelector('#cliente');
+            var data = new FormData(form);
+            var req = new XMLHttpRequest();
+            req.open("POST", "http://localhost/master_pdc_v2/upload/admin/total.php", true);
+        req.send(data);
+
+
+    }, false);
+
+
+    //  function duplicateObj(){
+    //     var copyData = canvas.getActiveObject().toObject();
+    //         fabric.util.enlivenObjects([copyData], function(objects) {
+    //           objects.forEach(function(o) {
+    //             o.set('top', o.top + 15);
+    //             o.set('left', o.left + 15);
+    //             canvas.add(o);
+    //           });
+    //           canvas.renderAll();
+    //         })
+    // }
 
 
 

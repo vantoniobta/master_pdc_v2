@@ -882,11 +882,12 @@ input[type="checkbox"]:checked::after, .checkbox input[type="checkbox"]:checked:
 
 
 /*imagen add canvas url*/
-#img_url{
+.img_url{
    border: 1px solid #ddd;
     border-radius: 4px;
     padding: 5px;
 }
+
 /*find canvas custum =========== */
 
 
