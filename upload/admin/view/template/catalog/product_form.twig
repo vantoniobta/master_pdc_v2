@@ -1079,7 +1079,7 @@
                          <button type="button" id="delete" class="btn btn-danger delete_object"><i class="fas fa-trash-alt"></i> Delete</button>
                          <hr>
                        </div>
-                         <form id="cliente" action="#" method="post">
+                         <form id="cliente" action="" method="POST">
                           <textarea name="config_json_canvas" id="from-json-textarea" style="width: 100%; background-color: #C0FFEE"></textarea>
                          </form>
                       </div>
@@ -1393,18 +1393,14 @@
     };
 
     document.getElementById('agrupar').addEventListener('click', function() { 
-        var textarea       = document.getElementById("from-json-textarea");
-            textarea.value = JSON.stringify(canvas);
-            // textarea.value = JSON.stringify(
-            //   canvas.getObjects()[0].scaleY  
-            //   );
+        // var textarea       = document.getElementById("from-json-textarea");
+        //     textarea.value = JSON.stringify(canvas);
+           
             var form = document.querySelector('#cliente');
             var data = new FormData(form);
             var req = new XMLHttpRequest();
             req.open("POST", "http://localhost/master_pdc_v2/upload/admin/total.php", true);
-        req.send(data);
-
-
+            req.send(data);
     }, false);
 
 
