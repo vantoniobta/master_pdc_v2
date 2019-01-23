@@ -892,6 +892,8 @@ input[type="checkbox"]:checked::after, .checkbox input[type="checkbox"]:checked:
 
 
 
+/* pop up custum =========== */
+
 .white-popup-block {
     background: #FFF;
     padding: 20px 30px;
@@ -901,4 +903,8 @@ input[type="checkbox"]:checked::after, .checkbox input[type="checkbox"]:checked:
     position: relative;
 }
 
+/* fin pop up custum =========== */
 
+.canvas_front{
+	border:1px solid #06b7f0;
+}
