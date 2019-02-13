@@ -491,8 +491,11 @@ class ControllerCatalogProduct extends Controller {
 	protected function getForm() {
 		$data['text_form'] = !isset($this->request->get['product_id']) ? $this->language->get('text_add') : $this->language->get('text_edit');
 
-		$data['product_id_pdc'] = $this->request->get['product_id'];
-
+        //validar si exire el ID del producto
+        if (isset($this->request->get['product_id'])) { # code...
+        	$data['product_id_pdc'] = $this->request->get['product_id']; //optener el id del producto para mostrar en la vista
+        }
+        
 		if (isset($this->error['warning'])) {
 			$data['error_warning'] = $this->error['warning'];
 		} else {
