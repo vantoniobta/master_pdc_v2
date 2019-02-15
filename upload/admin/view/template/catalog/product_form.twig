@@ -1415,7 +1415,8 @@
             var request            = new XMLHttpRequest();
                 formData.append('product_id_', id_product); //pasar valor del id del producto
                 formData.set("config_json_canvas", textarea.value);
-                request.open('POST', "total.php");
+                //request.open('POST', "total.php");
+                request.open('POST', 'index.php?route=catalog/product/canvas_custom&user_token={{ user_token }}&filter_name=' +  encodeURIComponent(request));
                 request.send(formData);  
     }, false);
 

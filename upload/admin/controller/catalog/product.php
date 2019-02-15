@@ -116,6 +116,28 @@ class ControllerCatalogProduct extends Controller {
 		$this->getForm();
 	}
 
+	public function canvas_custom(){
+		$this->load->language('catalog/product');
+
+		$this->document->setTitle($this->language->get('heading_title'));
+
+		$this->load->model('catalog/product');
+
+		$msj         = $_POST['config_json_canvas'];
+		$product_id_ = $_POST['product_id_']; //id del producto 
+		$output      = $msj;
+		$name        = 'new_custom_'.date('Y-m-d-H-s').rand(1500,1000000);
+		$archivo     = fopen($name.".txt", 'w+');
+		
+		fwrite($archivo, $output);
+		fclose($archivo);
+
+	}
+
+
+
+
+
 	public function delete() {
 		$this->load->language('catalog/product');
 
