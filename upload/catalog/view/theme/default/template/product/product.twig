@@ -286,8 +286,8 @@
               <div id="test-modal" class="mfp-hide white-popup-block" style="background-color: white;">
                   <div class="container" id="one_div">
                      <div class="row">
-                      <div class="col-md-12" style="background-color: yellow">
-                        <h6 align="center">El poder de Javascript by Fabricjs</h6>
+                      <div class="col-md-12" style="background-color: #badca7">
+                        <h5 align="center" style="color: #fff">PERSONALIZADOR DEL PRODUCTO</h5>
                       </div>
                      </div>
                        <div class="row">
@@ -352,27 +352,7 @@
                         </div>
                             <div id="tab-content-3" class="tab-content">
                                  <!--  <input type="file" id="imgLoader" /> -->
-                                   <button id="drawing-mode" class="btn btn-info"><i class="fas fa-paint-brush"></i> Enter drawing</button>
-                                      <div id="drawing-mode-options">
-                                          <p>Mode:</p>
-                                            <select id="drawing-mode-selector" class="form-control">
-                                              <option>Pencil</option>
-                                              <option>Circle</option>
-                                              <option>Spray</option>
-                                              <option>Pattern</option>
-                                              <option>hline</option>
-                                              <option>vline</option>
-                                              <option>square</option>
-                                <!--               <option>diamond</option> -->
-                                             <!--  <option>texture</option> -->
-                                            </select><br>
-                                            <p>Line width:</p>
-                                            <input type="range" value="30" min="0" max="150" id="drawing-line-width"><br>
-                                            <p>Line color:</p>
-                                            <input type="color" value="#005E7A" id="drawing-color"><br>
-                                            <p>Line shadow width:</p>
-                                            <input type="range" value="0" min="0" max="50" id="drawing-shadow-width"><br>
-                                      </div>
+                                  
                             </div>
 
                         <div id="tab-content-4" class="tab-content">
@@ -387,20 +367,20 @@
                        <div>
                            <p>Tools</p>
                            <button type="button" id="figuras" class="btn btn-light"><i class="fas fa-cube"></i> figures</button>
-                           <button type="button" class="btn btn-light" onclick="duplicateObj();"><i class="fas fa-clone"></i> Clone</button>
+<!--                            <button type="button" class="btn btn-light" onclick="duplicateObj();"><i class="fas fa-clone"></i> Clone</button> -->
                            <button type="button" id="delete" class="btn btn-danger delete_object"><i class="fas fa-trash-alt"></i> Delete</button>
                            <hr>
                        </div>
                     </div>
                         </div>
                            <div class="col-md-8">
-                            <canvas id="canvas_front" width="460" height="550" class="canvas_front" style="border:1px solid #06b7f0;">
+                            <canvas id="canvas_front" width="460" height="550" class="canvas_front" style="border:1px solid #badca7;">
                             Your browser does not support the Canvas tag.
                             </canvas>
                           </div>
                        </div>
                    </div>
-                 <p><a class="popup-modal-dismiss" href="#">Cerrar</a></p>
+                 <p><a class="popup-modal-dismiss" href="#"><i class="fas fa-times-circle fa-3x"></i></a></p>
               </div>
 
 
@@ -480,43 +460,105 @@
       {{ content_bottom }}</div>
     {{ column_right }}</div>
 </div>
-<!-- custom-->
-<script type="text/javascript">
-  var canvas = new fabric.Canvas('canvas_front');
-    preserveObjectStacking: true
-    isDrawingMode: true
+  <!-- custom-->
+    <script type="text/javascript">
+      var canvas = new fabric.Canvas('canvas_front');
+        preserveObjectStacking: true
+        isDrawingMode: true
 
-    function Addtext() {
-      canvas.add(new fabric.IText('designer', { 
-        left: 150,
-        top: 130,
-        fontFamily: 'Arial black',
-        fill: '#333',
-        fontSize: 30
-        }));
+        function Addtext() {
+          canvas.add(new fabric.IText('designer', { 
+            left: 150,
+            top: 130,
+            fontFamily: 'Arial black',
+            fill: '#333',
+            fontSize: 30
+            }));
+        }
+         $('select#color').on('change', function() {
+         canvas.backgroundColor = this.value;
+         canvas.renderAll();
+      });
+            document.getElementById('font-family').onchange = function() {
+          canvas.getActiveObject().setFontFamily(this.value);
+          canvas.renderAll();
+      }
+
+      document.getElementById('text-color').onchange = function() {
+           canvas.getActiveObject().setFill(this.value);
+          canvas.renderAll();
+      }
+      document.getElementById('figuras').onclick=function(){
+            canvas.remove(canvas.getActiveObject());
+            // agregar rectangulo
+                canvas.add(new fabric.Rect({
+                   width: 50, 
+                   height: 100, 
+                   left: 130, 
+                   top: 140, 
+                   fill: 'rgb(186,218,85)'
+                }));
+                // agregar circulo
+                canvas.add(new fabric.Circle({
+                    radius: 40,
+                    left: 180,
+                    top: 150,
+                    fill: 'rgb(240,11,66)'
+                }));
+    };
+     $('.delete_object').click(function() {
+      var activeObject = canvas.getActiveObjects();
+      if (confirm('Are you sure?')) {
+        canvas.discardActiveObject();
+        canvas.remove(...activeObject);
+      }
+    });
+
+    document.getElementById('imgLoader').onchange = function handleImage(e) {
+        var reader = new FileReader();
+        reader.onload = function (event) { console.log('fdsf');
+            var imgObj = new Image();
+            imgObj.src = event.target.result;
+            imgObj.onload = function () {
+                // start fabricJS stuff
+                
+                var image = new fabric.Image(imgObj);
+                image.set({
+                    left: 130,
+                    top: 60,
+                }).scale(0.2);
+                //image.scale(getRandomNum(0.1, 0.25)).setCoords();
+                canvas.add(image);
+                
+                // end fabricJS stuff
+            }
+            
+        }
+        reader.readAsDataURL(e.target.files[0]);
     }
-</script>
-<!-- custom-->
-<script type="text/javascript">
-  $('.popup-gallery').magnificPopup({
-    delegate: 'a',
-    type: 'image',
-    gallery:{
-      enabled:true
-    }
+
+    </script>
+  <!-- custom-->
+  <script type="text/javascript">
+    $('.popup-gallery').magnificPopup({
+      delegate: 'a',
+      type: 'image',
+      gallery:{
+        enabled:true
+      }
+    });
+
+  $('.popup-modal').magnificPopup({
+      type: 'inline',
+      preloader: false,
+      focus: '#username',
+      modal: true
   });
-
-$('.popup-modal').magnificPopup({
-    type: 'inline',
-    preloader: false,
-    focus: '#username',
-    modal: true
-});
-$(document).on('click', '.popup-modal-dismiss', function (e) {
-    e.preventDefault();
-    $.magnificPopup.close();
-});
-</script>
+  $(document).on('click', '.popup-modal-dismiss', function (e) {
+      e.preventDefault();
+      $.magnificPopup.close();
+  });
+  </script>
 
 <script type="text/javascript"><!--
 $('select[name=\'recurring_id\'], input[name="quantity"]').change(function(){
