@@ -123,11 +123,13 @@ class ControllerCatalogProduct extends Controller {
 
 		$this->load->model('catalog/product');
 
+		$this->model_catalog_product->save_Product_custom($this->request->get['product_id'], $this->request->post);
+
 		$msj         = $_POST['config_json_canvas'];
 		$product_id_ = $_POST['product_id_']; //id del producto 
 		$output      = $msj;
-		$name        = 'new_custom_'.date('Y-m-d-H-s').rand(1500,1000000);
-		$archivo     = fopen($name.".txt", 'w+');
+		$name_txt        = 'new_custom_'.date('Y-m-d-H-s').rand(1500,1000000);
+		$archivo     = fopen($name_txt.".txt", 'w+');
 		
 		fwrite($archivo, $output);
 		fclose($archivo);
