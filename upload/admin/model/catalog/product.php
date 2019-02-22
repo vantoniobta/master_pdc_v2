@@ -134,8 +134,8 @@ class ModelCatalogProduct extends Model {
 		return $product_id;
 	}
 
-	public function save_Product_custom($product_id, $data) {
-		$this->db->query("INSERT INTO ". DB_PREFIX . "custom_product SET product_id='". $this->db->escape($data['product_id'])."', name_txt = '". $this->db->escape($data['name_txt']) ."',date_=NOW()");
+	public function save_Product_custom($product_id, $txt) {
+		$this->db->query("INSERT INTO ". DB_PREFIX . "custom_product SET product_id='". $product_id ."', name_txt = '". $txt ."',date_=NOW()");
 	}
 
 	public function editProduct($product_id, $data) {

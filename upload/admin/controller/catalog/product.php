@@ -120,19 +120,25 @@ class ControllerCatalogProduct extends Controller {
 		$this->load->language('catalog/product');
 
 		$this->document->setTitle($this->language->get('heading_title'));
-
-		$this->load->model('catalog/product');
-
-		$this->model_catalog_product->save_Product_custom($this->request->get['product_id'], $this->request->post);
-
+	    $this->load->model('catalog/product');
+        $product_id_ = $_POST['product_id_']; //id del producto 
 		$msj         = $_POST['config_json_canvas'];
-		$product_id_ = $_POST['product_id_']; //id del producto 
 		$output      = $msj;
-		$name_txt        = 'new_custom_'.date('Y-m-d-H-s').rand(1500,1000000);
+		$name_txt    = 'new_custom_'.date('Y-m-d-H-s').rand(1500,1000000);
 		$archivo     = fopen($name_txt.".txt", 'w+');
-		
+		$this->model_catalog_product->save_Product_custom($product_id_, $name_txt);
 		fwrite($archivo, $output);
 		fclose($archivo);
+        //-------------------opción 1---------------
+		// $msj         = $_POST['config_json_canvas'];
+		// $product_id_ = $_POST['product_id_']; //id del producto 
+		// $output      = $msj;
+		// $name_txt        = 'new_custom_'.date('Y-m-d-H-s').rand(1500,1000000);
+		// $archivo     = fopen($name_txt.".txt", 'w+');
+		// echo $product_id_;
+		// fwrite($archivo, $output);
+		// fclose($archivo);
+		//----------------------------------
 
 	}
 
