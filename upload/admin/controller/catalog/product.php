@@ -117,10 +117,13 @@ class ControllerCatalogProduct extends Controller {
 	}
 
 	public function canvas_custom(){
+
 		$this->load->language('catalog/product');
 
 		$this->document->setTitle($this->language->get('heading_title'));
+
 	    $this->load->model('catalog/product');
+
         $product_id_ = $_POST['product_id_']; //id del producto 
 		$msj         = $_POST['config_json_canvas'];
 		$output      = $msj;
@@ -523,7 +526,23 @@ class ControllerCatalogProduct extends Controller {
 
         //validar si exire el ID del producto
         if (isset($this->request->get['product_id'])) { # code...
+
         	$data['product_id_pdc'] = $this->request->get['product_id']; //optener el id del producto para mostrar en la vista
+        	$product_canvas = $this->model_catalog_product->getProduct_Custom($this->request->get['product_id']);
+
+				   if (!empty($product_canvas)) {  # code...
+				   	    //optiene el nombre del txt del producto personalizado
+						$data_json   =   $product_canvas['name_txt'];
+						$file_json_  =  file_get_contents($data_json.'.txt');
+					}	
+	        	 	
+	        	 	//$data['name_txt'] = $product_canvas['name_txt'];
+        	        //echo $data['name_txt'];
+	        	 
+        	// $product_canvas = $this->model_catalog_product->getProduct_Custom(	$this->request->get['product_id']);
+        	// $data['name_txt'] = $product_canvas['name_txt'];
+        	// echo $data['name_txt'];
+
         }
         
 		if (isset($this->error['warning'])) {

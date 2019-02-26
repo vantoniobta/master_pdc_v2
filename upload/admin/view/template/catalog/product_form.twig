@@ -1033,9 +1033,11 @@
                       <td class="text-left">
                       <!-- init canvas custum -->
                        {% if product_id_pdc %}
+
                           <div class="container" id="one_div">
                            <div class="row"> 
-                               <div class="col-md-4" style="background-color:#BADCA7">
+                               <div class="col-md-4">
+                                <textarea>{{ file_json_ }}</textarea>
                           <hr>
                           <div class="tabs">
                               <div class="tab-content-wrapper">
@@ -1258,6 +1260,9 @@
   <script type="text/javascript" src="view/javascript/summernote/opencart.js"></script>
   <script type="text/javascript">
     var canvas = new fabric.Canvas('canvas_vantonio');
+
+  
+
         function Addtext() { 
         canvas.add(new fabric.IText('designer', { 
               left: 150,
