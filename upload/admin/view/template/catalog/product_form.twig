@@ -1037,7 +1037,8 @@
                           <div class="container" id="one_div">
                            <div class="row"> 
                                <div class="col-md-4">
-                                <textarea>{{ file_json_ }}</textarea>
+                               <textarea id="info">{{ json_canvas }}</textarea><br>
+                               <button  type="button" id="btn_txt" class="btn btn-info">SHOW CUSTOM-X3</button>
                           <hr>
                           <div class="tabs">
                               <div class="tab-content-wrapper">
@@ -1259,10 +1260,16 @@
   <script type="text/javascript" src="view/javascript/summernote/summernote-image-attributes.js"></script> 
   <script type="text/javascript" src="view/javascript/summernote/opencart.js"></script>
   <script type="text/javascript">
-    var canvas = new fabric.Canvas('canvas_vantonio');
+       var canvas = new fabric.Canvas('canvas_vantonio');
 
+        document.getElementById('btn_txt').onclick=function(){
+            var valtxt=document.getElementById('info').value; //valor del codigo en txtArea
+            var json=valtxt;
+            canvas.loadFromJSON(json, canvas.renderAll.bind(canvas), function (o, object) {
+            fabric.log(o, object);
+            });
+        }
   
-
         function Addtext() { 
         canvas.add(new fabric.IText('designer', { 
               left: 150,
@@ -1271,10 +1278,6 @@
               fill: '#333',
               fontSize: 30
               }));
-        }
-
-        function SaveCanvas() {
-          alert('onclick');
         }
 
       var imageLoader = document.getElementById('imagenS');

@@ -532,8 +532,9 @@ class ControllerCatalogProduct extends Controller {
 
 				   if (!empty($product_canvas)) {  # code...
 				   	    //optiene el nombre del txt del producto personalizado
-						$data_json   =   $product_canvas['name_txt'];
-						$file_json_  =  file_get_contents($data_json.'.txt');
+						$data_json           =   $product_canvas['name_txt'];
+						$file_json_          =  file_get_contents($data_json.'.txt');
+                        $data['json_canvas'] = $file_json_;
 					}	
 	        	 	
 	        	 	//$data['name_txt'] = $product_canvas['name_txt'];
