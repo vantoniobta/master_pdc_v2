@@ -1095,7 +1095,7 @@
                             </div>
                           </div>
                           <div class="col-md-8">
-                            <canvas id="canvas_vantonio" width="490" height="600">
+                            <canvas id="canvas_vantonio" width="480" height="600">
                             Your browser does not support the Canvas tag.
                             </canvas>
                           </div>
@@ -1280,27 +1280,43 @@
               }));
         }
 
-      var imageLoader = document.getElementById('imagenS');
-          imageLoader.addEventListener('change', handleImage, false);
+        document.getElementById('imagenS').addEventListener("change", function(e) {
+           var file   = e.target.files[0];
+           var reader = new FileReader();
+           reader.onload = function(f) {
+              var data   = f.target.result;
+              fabric.Image.fromURL(data, function(img) {
+                 // add background image
+                 canvas.setBackgroundImage(img, canvas.renderAll.bind(canvas), {
+                    scaleX: canvas.width / img.width,
+                    scaleY: canvas.height / img.height
+                 });
+              });
+           };
+         reader.readAsDataURL(file);
+      });
 
-      function handleImage(e){
-        var reader = new FileReader();
-          reader.onload = function(event){
-            var img = new Image();
-            img.onload = function(){
-                var imgInstance = new fabric.Image(img,{
-                  left: 0,
-                  top: 0,
-                  scaleX: 1,
-                  scaleY: 1,
-                  selectable:false
-                })
-                canvas.add(imgInstance);
-            }
-             img.src = event.target.result;
-        }
-        reader.readAsDataURL(e.target.files[0]);  
-    }
+    //   var imageLoader = document.getElementById('imagenS');
+    //       imageLoader.addEventListener('change', handleImage, false);
+
+    //   function handleImage(e){
+    //     var reader = new FileReader();
+    //       reader.onload = function(event){
+    //         var img = new Image();
+    //         img.onload = function(){
+    //             var imgInstance = new fabric.Image(img,{
+    //               left: 0,
+    //               top: 0,
+    //               scaleX: 1,
+    //               scaleY: 1,
+    //               selectable:false
+    //             })
+    //             canvas.add(imgInstance);
+    //         }
+    //          img.src = event.target.result;
+    //     }
+    //     reader.readAsDataURL(e.target.files[0]);  
+    // }
 
       canvas.backgroundColor = '#FFFFFF';
       canvas.renderAll();
@@ -1320,7 +1336,7 @@
     }
 
 
-       document.getElementById('figuras').onclick=function(){
+    document.getElementById('figuras').onclick=function(){
             canvas.remove(canvas.getActiveObject());
             // agregar rectangulo
                 canvas.add(new fabric.Rect({
