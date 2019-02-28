@@ -135,7 +135,15 @@ class ModelCatalogProduct extends Model {
 	}
 
 	public function save_Product_custom($product_id, $txt) {
-		$this->db->query("INSERT INTO ". DB_PREFIX . "custom_product SET product_id='". $product_id ."', name_txt = '". $txt ."',date_=NOW()");
+
+                $query = $this->db->query("SELECT * FROM " . DB_PREFIX . "custom_product WHERE product_id = '" .$product_id. "' ");
+				if ($query->num_rows) {
+			     	$this->db->query("UPDATE ". DB_PREFIX . "custom_product SET name_txt='". $txt ."' WHERE product_id='".$product_id."' ");
+				}else{
+					$this->db->query("INSERT INTO ". DB_PREFIX . "custom_product SET product_id='". $product_id ."', name_txt = '". $txt ."',date_=NOW()");
+				}		   
+		    	//$this->db->query("INSERT INTO ". DB_PREFIX . "custom_product SET product_id='". $product_id ."', name_txt = '". $txt ."',date_=NOW()");
+		    	//$this->db->query("UPDATE ". DB_PREFIX . "custom_product SET name_txt='". $txt ."' WHERE product_id='".$product_id."' ");
 	}
 
 	public function editProduct($product_id, $data) {
