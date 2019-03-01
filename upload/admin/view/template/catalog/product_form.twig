@@ -1037,8 +1037,8 @@
                           <div class="container" id="one_div">
                            <div class="row"> 
                                <div class="col-md-4">
-                               <textarea id="info">{{ json_canvas }}</textarea><br>
-                               <button  type="button" id="btn_txt" class="btn btn-info">SHOW CUSTOM-X3</button>
+                               <textarea id="info" style="display: none;">{{ json_canvas }}</textarea><br>
+                               <button  type="button" id="btn_txt" class="btn btn-info"><i class="fas fa-eye"></i> EDITAR CUSTOM-X3</button>
                           <hr>
                           <div class="tabs">
                               <div class="tab-content-wrapper">
@@ -1431,13 +1431,22 @@
     };
 
  document.getElementById('agrupar').addEventListener('click', function() {
+
+           //var canvas_image       = document.getElementById('canvas_vantonio');
+
             var id_product         = document.getElementById("product_id_pdc").value;
             var textarea           = document.getElementById("from-json-textarea");
                 textarea.value     = JSON.stringify(canvas);
             var config_json_canvas = document.getElementById("config_json_canvas");
+
+            //var dataURL            = canvas_image.toDataURL();
+
             var formData           = new FormData();
             var request            = new XMLHttpRequest();
                 formData.append('product_id_', id_product); //pasar valor del id del producto
+
+                //formData.append('data_image', dataURL); //pasar valor del id del producto
+
                 formData.set("config_json_canvas", textarea.value);
                 //request.open('POST', "total.php");
                 request.open('POST', 'index.php?route=catalog/product/canvas_custom&user_token={{ user_token }}&filter_name=' +  encodeURIComponent(request));
