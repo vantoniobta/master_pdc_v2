@@ -124,26 +124,21 @@ class ControllerCatalogProduct extends Controller {
 
 	    $this->load->model('catalog/product');
 
-        $product_id_ = $_POST['product_id_']; //id del producto 
-       // $canvas_image = $_POST['data_image']; //imagen
-		$msj         = $_POST['config_json_canvas'];
-		$output      = $msj;
-		$name_txt    = 'new_custom_'.date('Y-m-d-H-s').rand(1500,1000000);
-		$archivo     = fopen($name_txt.".txt", 'w+');
+        $product_id_  = $_POST['product_id_']; //id del producto 
+        //$canvas_image = $_POST['canvasData']; //imagen
+		$msj          = $_POST['config_json_canvas'];
+		$output       = $msj;
+		$name_txt     = 'new_custom_'.date('Y-m-d-H-s').rand(1500,1000000);
+		$archivo      = fopen('json_custom/'.$name_txt.".txt", 'w+');
 		$this->model_catalog_product->save_Product_custom($product_id_, $name_txt);
 
 
-		  // $canvas_image = str_replace('data:image/png;base64,', '', $canvas_image);
-	   //    $canvas_image = str_replace(' ', '+', $canvas_image);
-	   //    $data = base64_decode($canvas_image);
-	   //    $file = $name_txt.'.png';
+		   // $canvas_image = str_replace('data:image/png;base64,', '', $canvas_image);
+	    //    $canvas_image = str_replace(' ', '+', $canvas_image);
+	    //    $data = base64_decode($canvas_image);
+	    //    $file = $name_txt.'.png';
 
-	   //    file_put_contents($file, $data);
-
-	      
-	   
-
-
+	    //    file_put_contents('json_custom/'.$file, $data);
 		fwrite($archivo, $output);
 		fclose($archivo);
         //-------------------opción 1---------------
@@ -546,8 +541,8 @@ class ControllerCatalogProduct extends Controller {
 
 				   if (!empty($product_canvas)) {  # code...
 				   	    //optiene el nombre del txt del producto personalizado
-						$data_json           =   $product_canvas['name_txt'];
-						$file_json_          =  file_get_contents($data_json.'.txt');
+						$data_json           =  $product_canvas['name_txt'];
+						$file_json_          =  file_get_contents('json_custom/'.$data_json.'.txt'); //ruta de la configuracion de json
                         $data['json_canvas'] = $file_json_;
 					}	
 	        	 	

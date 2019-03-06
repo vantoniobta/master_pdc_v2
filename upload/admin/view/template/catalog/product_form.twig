@@ -1439,13 +1439,13 @@
                 textarea.value     = JSON.stringify(canvas);
             var config_json_canvas = document.getElementById("config_json_canvas");
 
-            //var dataURL            = canvas_image.toDataURL();
+            //var canvasData         = canvas.toDataURL("image/png");
 
             var formData           = new FormData();
             var request            = new XMLHttpRequest();
                 formData.append('product_id_', id_product); //pasar valor del id del producto
 
-                //formData.append('data_image', dataURL); //pasar valor del id del producto
+               //formData.append('canvasData', canvasData); //pasar imagen 
 
                 formData.set("config_json_canvas", textarea.value);
                 //request.open('POST', "total.php");
