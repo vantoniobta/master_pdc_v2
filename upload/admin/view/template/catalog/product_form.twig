@@ -1010,7 +1010,11 @@
                   </thead>
                   <tbody>
                     <tr>
-                      <td class="text-left"><a href="" id="thumb-image" data-toggle="image" class="img-thumbnail"><img src="{{ thumb }}" alt="" title="" data-placeholder="{{ placeholder }}" /></a>
+                      <td class="text-left">
+                        <a href="" id="thumb-image" data-toggle="image" class="img-thumbnail">
+                          <img src="{{ img_name }}" width="20%">
+                         <!--  <img src="{{ thumb }}" alt="" title="" data-placeholder="{{ placeholder }}" /> -->
+                        </a>
                         <input type="hidden" name="image" value="{{ image }}" id="input-image" /></td>
                     </tr>
                   </tbody>
@@ -1034,10 +1038,12 @@
                       <!-- init canvas custum -->
                        {% if product_id_pdc %}
 
-                          <div class="container" id="one_div">
+                          <div class="container" style="background-color: #fff">
                            <div class="row"> 
                                <div class="col-md-4">
-                               <textarea id="info" style="display: none;">{{ json_canvas }}</textarea><br>
+                        
+                                
+                               <textarea id="info" >{{ json_canvas }}</textarea><br>
                                <button  type="button" id="btn_txt" class="btn btn-info"><i class="fas fa-eye"></i> EDITAR CUSTOM-X3</button>
                           <hr>
                           <div class="tabs">
@@ -1431,21 +1437,18 @@
     };
 
  document.getElementById('agrupar').addEventListener('click', function() {
-
-           //var canvas_image       = document.getElementById('canvas_vantonio');
-
             var id_product         = document.getElementById("product_id_pdc").value;
             var textarea           = document.getElementById("from-json-textarea");
                 textarea.value     = JSON.stringify(canvas);
             var config_json_canvas = document.getElementById("config_json_canvas");
 
-            //var canvasData         = canvas.toDataURL("image/png");
+            var canvasData         = canvas.toDataURL("image/png");
 
             var formData           = new FormData();
             var request            = new XMLHttpRequest();
                 formData.append('product_id_', id_product); //pasar valor del id del producto
 
-               //formData.append('canvasData', canvasData); //pasar imagen 
+               formData.append('canvasData', canvasData); //pasar imagen 
 
                 formData.set("config_json_canvas", textarea.value);
                 //request.open('POST', "total.php");
