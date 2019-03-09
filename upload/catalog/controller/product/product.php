@@ -214,6 +214,8 @@ class ControllerProductProduct extends Controller {
 				'href' => $this->url->link('product/product', $url . '&product_id=' . $this->request->get['product_id'])
 			);
 
+			
+
 			$this->document->setTitle($product_info['meta_title']);
 			$this->document->setDescription($product_info['meta_description']);
 			$this->document->setKeywords($product_info['meta_keyword']);
@@ -294,6 +296,17 @@ class ControllerProductProduct extends Controller {
 			}
 
 			$discounts = $this->model_catalog_product->getProductDiscounts($this->request->get['product_id']);
+
+			$product_canvas_front = $this->model_catalog_product->getProduct_Custom_Front($this->request->get['product_id']);
+
+			if (!empty($product_canvas_front)) {  
+				   	    //optiene el nombre del txt del producto personalizado
+						$data_json           =  $product_canvas_front['name_txt'];
+						//$data['img_name']    = 'json_custom/'.$data_json.'.png'; //nombre de la imagen
+						$file_json_          =  file_get_contents('admin/json_custom/'.$data_json.'.txt'); //ruta de la configuracion de json
+                        $data['file_json_txt'] = $file_json_;
+			}
+
 
 			$data['discounts'] = array();
 

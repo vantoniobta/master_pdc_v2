@@ -547,9 +547,6 @@ class ControllerCatalogProduct extends Controller {
 						$data['img_name']    = 'json_custom/'.$data_json.'.png'; //nombre de la imagen
 						$file_json_          =  file_get_contents('json_custom/'.$data_json.'.txt'); //ruta de la configuracion de json
                         $data['json_canvas'] = $file_json_;
-
-                        
-
 					}	
 	        	 	
 	        	 	//$data['name_txt'] = $product_canvas['name_txt'];

@@ -334,6 +334,11 @@ class ModelCatalogProduct extends Model {
 		return $product_attribute_group_data;
 	}
 
+	public function getProduct_Custom_Front($product_id) {
+		$query = $this->db->query("SELECT * FROM " . DB_PREFIX . "custom_product WHERE product_id='".(int)$product_id."'");
+		return $query->row;
+	}
+
 	public function getProductOptions($product_id) {
 		$product_option_data = array();
 

@@ -22,11 +22,15 @@
         <div class="{{ class }}"> {% if thumb or images %}
           <ul class="thumbnails">
             {% if thumb %}
-            <li><a class="thumbnail" href="{{ popup }}" title="{{ heading_title }}"><img src="{{ thumb }}" title="{{ heading_title }}" alt="{{ heading_title }}" /></a></li>
+            <li><a class="thumbnail" href="{{ popup }}" title="{{ heading_title }}">
+              <img src="{{ thumb }}" title="{{ heading_title }}" alt="{{ heading_title }}" />
+            </a></li>
             {% endif %}
             {% if images %}
             {% for image in images %}
-            <li class="image-additional"><a class="thumbnail" href="{{ image.popup }}" title="{{ heading_title }}"> <img src="{{ image.thumb }}" title="{{ heading_title }}" alt="{{ heading_title }}" /></a></li>
+            <li class="image-additional"><a class="thumbnail" href="{{ image.popup }}" title="{{ heading_title }}">
+             <img src="{{ image.thumb }}" title="{{ heading_title }}" alt="{{ heading_title }}" />
+           </a></li>
             {% endfor %}
             {% endif %}
           </ul>
@@ -281,13 +285,16 @@
 
               <button type="button" id="button-cart" data-loading-text="{{ text_loading }}" class="btn btn-primary btn-lg btn-block">{{ button_cart }}</button><br>
               <a href="#test-modal" class="popup-modal"> <button type="button" id="button-custom" data-loading-text="{{ text_loading }}" class="btn btn-primary btn-lg btn-block">Custom</button></a>
+              <p>file json</p>
+              <textarea id="file_json_txt">{{ file_json_txt }}</textarea>
 
 
               <div id="test-modal" class="mfp-hide white-popup-block" style="background-color: white;">
+                <p><a class="popup-modal-dismiss" href="#"><i class="fas fa-times-circle fa-2x"></i></a></p>
                   <div class="container" id="one_div">
                      <div class="row">
                       <div class="col-md-12" style="background-color: #badca7">
-                        <h5 align="center" style="color: #fff">PERSONALIZADOR DEL PRODUCTO</h5>
+                        
                       </div>
                      </div>
                        <div class="row">
@@ -374,13 +381,13 @@
                     </div>
                         </div>
                            <div class="col-md-8">
-                            <canvas id="canvas_front" width="460" height="550" class="canvas_front" style="border:1px solid #badca7;">
+                            <canvas id="canvas_front" width="480" height="600" class="canvas_front" style="border:1px solid #badca7;">
                             Your browser does not support the Canvas tag.
                             </canvas>
                           </div>
                        </div>
                    </div>
-                 <p><a class="popup-modal-dismiss" href="#"><i class="fas fa-times-circle fa-3x"></i></a></p>
+                 
               </div>
 
 
@@ -466,6 +473,16 @@
         preserveObjectStacking: true
         isDrawingMode: true
 
+
+         document.getElementById('button-custom').onclick=function(){
+            var valtxt=document.getElementById('file_json_txt').value; //valor del codigo en txtArea
+            var json=valtxt;
+            canvas.loadFromJSON(json, canvas.renderAll.bind(canvas), function (o, object) {
+            fabric.log(o, object);
+            });
+        }
+  
+
         function Addtext() {
           canvas.add(new fabric.IText('designer', { 
             left: 150,
@@ -540,18 +557,10 @@
     </script>
   <!-- custom-->
   <script type="text/javascript">
-    $('.popup-gallery').magnificPopup({
-      delegate: 'a',
-      type: 'image',
-      gallery:{
-        enabled:true
-      }
-    });
-
   $('.popup-modal').magnificPopup({
       type: 'inline',
       preloader: false,
-      focus: '#username',
+      focus: '.mfp-close',
       modal: true
   });
   $(document).on('click', '.popup-modal-dismiss', function (e) {
