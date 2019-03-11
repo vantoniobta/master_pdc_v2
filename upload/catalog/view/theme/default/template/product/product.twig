@@ -289,17 +289,19 @@
               <textarea id="file_json_txt">{{ file_json_txt }}</textarea>
 
 
-              <div id="test-modal" class="mfp-hide white-popup-block" style="background-color: white;">
-                <p><a class="popup-modal-dismiss" href="#"><i class="fas fa-times-circle fa-2x"></i></a></p>
+              <div id="test-modal" class="mfp-hide white-popup-block" style="background-color: #C0FFEE;">
+                
                   <div class="container" id="one_div">
                      <div class="row">
-                      <div class="col-md-12" style="background-color: #badca7">
-                        
+                      <div class="col-md-12" style="background-color: #fff;">
                       </div>
                      </div>
                        <div class="row">
-                        <div class="col-md-4" style="background-color:#D3D3D3 ">
-                        <hr>
+                        <div class="col-md-4" style="background-color:#D3D3D3 "><br>
+                            <button type="button" id="figuras" class="btn btn-primary"><i class="fas fa-cube"></i> figures</button>
+                           <button type="button" id="delete" class="btn btn-primary delete_object"><i class="fas fa-trash-alt"></i> Delete</button>
+                            <button type="button" id="delete" class="btn btn-info"><i class="fas fa-times"></i> Cancelar</button>
+                         <hr>
                         <div class="tabs">
                             <input type="radio" name="tab" id="tab1" checked="checked">
                             <label for="tab1"><i class="fas fa-font"></i></label>
@@ -313,16 +315,16 @@
                       <div class="tab-content-wrapper">
                         <div id="tab-content-1" class="tab-content">
                            <div class="form-group">
-                             <button type="button" class="btn btn-info" onclick="Addtext()"><i class="fas fa-edit"></i>&nbsp;Text </button>
+                             <button type="button" class="btn btn-success" onclick="Addtext()"><i class="fas fa-edit"></i>&nbsp;Text </button>
                             </div>
                              <div class="form-group">
                                  <p>background</p>
                                   <select id="color" class="form-control">
-                                      <option value="#CD5C5C">#CD5C5C</option>
-                                      <option value="#708090">#708090</option>
-                                      <option value="#98FB98">#98FB98</option>
-                                      <option value="#FFC0CB">#FFC0CB</option>
-                                      <option value="#FF7F50">#FF7F50</option>
+                                      <option value="#10CA7E">#LOCATE</option>
+                                      <option value="#5AD">#SAD</option>
+                                      <option value="#A55">#ASS</option>
+                                      <option value="#D14810">#DIABLO</option>
+                                       <option value="#A27157">#ARTIST</option>
                                   </select>
                                 </div>
                                   <div class="form-group">
@@ -338,28 +340,16 @@
                                      Color text
                                      <input type="color" value="" id="text-color" size="10">
                                 </div>
-                                 <div class="form-group">
-                                  <button height="60" class="btn btn-info" onclick="sendSelectedObjectBack()"><i class="far fa-share-square"></i> Send Back</button>
-                                 </div>
                         </div>
 
                         <div id="tab-content-2" class="tab-content">
-                            <span class="btn btn-default btn-file">
+                            <span class="btn btn-success btn-file">
                                   <i class="fas fa-cloud-upload-alt"></i> Upload file<input type="file" id="imgLoader" />
                               </span>
                               <hr>
-                             <!-- <a href="#" id="x1"><img src="img/img_url/1.png" width="20%" height="20%" id="img_url"></a>
-                             <a href="#" id="x2"><img src="img/img_url/2.png" width="20%" height="20%" id="img_url"></a>
-                             <a href="#" id="x3"><img src="img/img_url/3.png" width="20%" height="20%" id="img_url"></a>
-                             <a href="#" id="x4"><img src="img/img_url/4.jpg" width="20%" height="20%" id="img_url"></a>
-                             <a href="#" id="x5"><img src="img/img_url/5.png" width="20%" height="20%" id="img_url"></a>
-                             <a href="#" id="x6"><img src="img/img_url/6.png" width="20%" height="20%" id="img_url"></a>
-                             <a href="#" id="x7"><img src="img/img_url/7.png" width="20%" height="20%" id="img_url"></a>
-                             <a href="#" id="x8"><img src="img/img_url/8.png" width="20%" height="20%" id="img_url"></a> -->
                         </div>
                             <div id="tab-content-3" class="tab-content">
                                  <!--  <input type="file" id="imgLoader" /> -->
-                                  
                             </div>
 
                         <div id="tab-content-4" class="tab-content">
@@ -372,16 +362,13 @@
                         </div>
                       </div>
                        <div>
-                           <p>Tools</p>
-                           <button type="button" id="figuras" class="btn btn-light"><i class="fas fa-cube"></i> figures</button>
-<!--                            <button type="button" class="btn btn-light" onclick="duplicateObj();"><i class="fas fa-clone"></i> Clone</button> -->
-                           <button type="button" id="delete" class="btn btn-danger delete_object"><i class="fas fa-trash-alt"></i> Delete</button>
+                    
                            <hr>
                        </div>
                     </div>
                         </div>
-                           <div class="col-md-8">
-                            <canvas id="canvas_front" width="480" height="600" class="canvas_front" style="border:1px solid #badca7;">
+                           <div class="col-md-6" style="border-style: dashed; border-width: 2px;background-color: #fff">
+                            <canvas id="canvas_front" width="480" height="570" class="canvas_front" style="border:0px solid #badca7;">
                             Your browser does not support the Canvas tag.
                             </canvas>
                           </div>
@@ -484,12 +471,12 @@
   
 
         function Addtext() {
-          canvas.add(new fabric.IText('designer', { 
-            left: 150,
-            top: 130,
+          canvas.add(new fabric.IText('edit text', { 
+            left: 190,
+            top: 170,
             fontFamily: 'Arial black',
-            fill: '#333',
-            fontSize: 30
+            fill: '#FFF',
+            fontSize: 20
             }));
         }
          $('select#color').on('change', function() {
@@ -509,18 +496,18 @@
             canvas.remove(canvas.getActiveObject());
             // agregar rectangulo
                 canvas.add(new fabric.Rect({
-                   width: 50, 
-                   height: 100, 
-                   left: 130, 
-                   top: 140, 
-                   fill: 'rgb(186,218,85)'
+                   width: 30, 
+                   height: 60, 
+                   left: 180, 
+                   top: 230, 
+                   fill: 'rgb(225,255,225)'
                 }));
                 // agregar circulo
                 canvas.add(new fabric.Circle({
-                    radius: 40,
-                    left: 180,
-                    top: 150,
-                    fill: 'rgb(240,11,66)'
+                    radius: 30,
+                    left: 230,
+                    top: 230,
+                    fill: 'rgb(222,187,30)'
                 }));
     };
      $('.delete_object').click(function() {
