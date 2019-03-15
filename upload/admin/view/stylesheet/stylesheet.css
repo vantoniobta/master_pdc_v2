@@ -853,12 +853,6 @@ input[type="checkbox"]:checked::after, .checkbox input[type="checkbox"]:checked:
 } 
 }
 
-
-
-
-#canvas_vantonio{
-	border:1px solid #06b7f0;
-}
 .btn-file {
   position: relative;
   overflow: hidden;
@@ -904,8 +898,3 @@ input[type="checkbox"]:checked::after, .checkbox input[type="checkbox"]:checked:
 }
 
 /* fin pop up custum =========== */
-
-.canvas_front{
-	border:1px solid #06b7f0;
-}
-
