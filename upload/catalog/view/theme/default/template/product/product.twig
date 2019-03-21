@@ -289,7 +289,7 @@
               <textarea id="file_json_txt">{{ file_json_txt }}</textarea>
 
 
-              <div id="test-modal" class="mfp-hide white-popup-block" style="background-color: #C0FFEE;">
+              <div id="test-modal" class="mfp-hide white-popup-block" style="background-color: #c0d3c5;">
                 
                   <div class="container" id="one_div">
                      <div class="row">
@@ -297,10 +297,12 @@
                       </div>
                      </div>
                        <div class="row">
-                        <div class="col-md-4" style="background-color:#D3D3D3 "><br>
-                            <button type="button" id="figuras" class="btn btn-primary"><i class="fas fa-cube"></i> Figuras</button>
-                           <button type="button" id="delete" class="btn btn-primary delete_object"><i class="fas fa-trash-alt"></i> Eliminar</button>
-                            <button type="button" id="delete" class="btn btn-info popup-modal-dismiss"><i class="fas fa-times"></i> SALIR</button>
+                        <br>
+                        <div class="col-md-4" style="background-color:#effec7"><br>
+                            <button type="button" id="figuras" class="btn btn-secondary"><i class="fas fa-cube"></i> Figuras</button>
+                            <button type="button" id="delete" class="btn btn-secondary delete_object"><i class="fas fa-trash-alt"></i> Eliminar</button>
+                            <button type="button" id="cart_custom_add" class="btn btn-secondary"><i class="fas fa-hdd"></i> Guardar</button>
+                             <button type="button" id="delete" class="btn btn-secondary popup-modal-dismiss"><i class="fas fa-times"></i> Cancelar</button>
                          <hr>
                         <div class="tabs">
                             <input type="radio" name="tab" id="tab1" checked="checked">
@@ -363,11 +365,11 @@
                       </div>
                        <div>
                     
-                           <hr>
+                           <br>
                        </div>
                     </div>
                         </div>
-                           <div class="col-md-6" style="border-style: dashed; border-width: 2px;background-color: #fff">
+                           <div class="col-md-6" style="border-style: dashed; border-width: 1px;background-color: #fff">
                             <canvas id="canvas_front" width="480" height="570" class="canvas_front" style="border:0px solid #badca7;">
                             Your browser does not support the Canvas tag.
                             </canvas>
@@ -577,6 +579,9 @@ $('select[name=\'recurring_id\'], input[name="quantity"]').change(function(){
 });
 //--></script> 
 <script type="text/javascript"><!--
+  $('#cart_custom_add').on('click', function() {
+    
+  });
 $('#button-cart').on('click', function() {
 	$.ajax({
 		url: 'index.php?route=checkout/cart/add',
