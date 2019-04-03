@@ -301,7 +301,7 @@
                         <div class="col-md-4" style="background-color:#effec7"><br>
                             <button type="button" id="figuras" class="btn btn-secondary"><i class="fas fa-cube"></i> Figuras</button>
                             <button type="button" id="delete" class="btn btn-secondary delete_object"><i class="fas fa-trash-alt"></i> Eliminar</button>
-                            <button type="button" id="cart_custom_add" class="btn btn-secondary"><i class="fas fa-hdd"></i> Guardar</button>
+                            <button type="button" id="button-cart" class="btn btn-secondary"><i class="fas fa-hdd"></i> Guardar</button>
                              <button type="button" id="delete" class="btn btn-secondary popup-modal-dismiss"><i class="fas fa-times"></i> Cancelar</button>
                          <hr>
                         <div class="tabs">
@@ -579,9 +579,7 @@ $('select[name=\'recurring_id\'], input[name="quantity"]').change(function(){
 });
 //--></script> 
 <script type="text/javascript"><!--
-  $('#cart_custom_add').on('click', function() {
-    
-  });
+
 $('#button-cart').on('click', function() {
 	$.ajax({
 		url: 'index.php?route=checkout/cart/add',

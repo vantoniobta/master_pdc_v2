@@ -259,6 +259,18 @@ class ControllerCheckoutCart extends Controller {
 		}
 	}
 
+	public function canvas_user(){
+
+		$this->load->language('catalog/product');
+
+		$this->document->setTitle($this->language->get('heading_title'));
+
+	    $this->load->model('catalog/product');
+
+        echo $_POST['product_id_']; //id del producto 
+
+	}
+
 	public function add() {
 		$this->load->language('checkout/cart');
 
