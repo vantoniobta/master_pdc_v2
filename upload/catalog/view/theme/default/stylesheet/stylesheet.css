@@ -3,7 +3,7 @@ body {
 	font-weight: 400;
 	color: #666;
 	font-size: 12px;
-	
+	line-height: 20px;
 	width: 100%;
 }
 h1, h2, h3, h4, h5, h6 {
@@ -38,7 +38,6 @@ a {
 a:hover {
 	text-decoration: none;
 }
-
 legend {
 	font-size: 18px;
 	padding: 7px 0px
@@ -127,21 +126,21 @@ div.required .control-label:before {
 }
 /* logo */
 #logo {
-	margin: 0 0 0px 0;
+	margin: 0 0 10px 0;
 }
 /* search */
 #search {
-	margin-bottom: 6px;
+	margin-bottom: 0px;
 }
 #search .input-lg {
-	height: 30px;
+	height: 40px;
 	line-height: 20px;
 	padding: 0 10px;
 }
 #search .btn-lg {
-	font-size: 10px;
-	line-height: 3px;
-	padding: 7px 35px;
+	font-size: 15px;
+	line-height: 18px;
+	padding: 10px 35px;
 	text-shadow: 0 1px 0 #FFF;
 }
 /* cart */
@@ -193,16 +192,28 @@ div.required .control-label:before {
 }
 /* menu */
 #menu {
-	background-color: #1E2A2D;
-	background-repeat: repeat-x;
-	width: : 100%;
+    background-color: #fff;
+    border: 0px solid #fff;
+    background-color: #fff;
+    -webkit-box-shadow: 0px 0px 8px 0px rgba(0,0,0,0.35);
+    -moz-box-shadow: 0px 0px 8px 0px rgba(0,0,0,0.35);
+    box-shadow: 0px 0px 8px 0px rgba(0,0,0,0.35);
+    -webkit-border-radius: 2px;
+    -moz-border-radius: 2px;
+    border-radius: 2px;
 
+    border-left: 8px solid transparent;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    -webkit-transition: padding-top .3s, 
+                        padding-bottom .3s;
+       -moz-transition: padding-top .3s, 
+                        padding-bottom .3s;
+            transition: padding-top .3s, 
+                        padding-bottom .3s;
 }
 #menu .nav > li > a {
-	color: #fff;
-	text-shadow: 0 -1px 0 rgba(0, 0, 0, 0.25);
-	padding: 10px 15px 10px 15px;
-	min-height: 15px;
+	color: #000;
 	background-color: transparent;
 }
 #menu .nav > li > a:hover, #menu .nav > li.open > a {
