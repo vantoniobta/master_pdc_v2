@@ -3,7 +3,7 @@ body {
 	font-weight: 400;
 	color: #666;
 	font-size: 12px;
-	line-height: 20px;
+	
 	width: 100%;
 }
 h1, h2, h3, h4, h5, h6 {
@@ -38,6 +38,7 @@ a {
 a:hover {
 	text-decoration: none;
 }
+
 legend {
 	font-size: 18px;
 	padding: 7px 0px
@@ -193,8 +194,8 @@ div.required .control-label:before {
 /* menu */
 #menu {
 	background-color: #1E2A2D;
-	
-	width: : 40px;
+	background-repeat: repeat-x;
+	width: : 100%;
 
 }
 #menu .nav > li > a {
